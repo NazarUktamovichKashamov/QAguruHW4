@@ -3,18 +3,17 @@ import os
 from selene import browser, be, have
 
 def test_form():
-    browser.open('https://demoqa.com/automation-practice-form')
+    browser.open('/automation-practice-form')
     browser.element('#firstName').type('Walther')
     browser.element('#lastName').type('White')
     browser.element('#userEmail').type('heisenberg@drugs.com')
     browser.element('[for="gender-radio-1').click()
     browser.element('#userNumber').type('89999999999')
     browser.element('#dateOfBirthInput').click()
-    #browser.element('[id="dateOfBirthInput"]').click()
-    browser.element('[class="react-datepicker__year-select"]').click()
-    browser.element('[class="react-datepicker__year-select"]').element('[value="1977"]').click()
-    browser.element('[class="react-datepicker__month-select"]').element('[value="7"]').click()
-    browser.element('[aria-label="Choose Saturday, August 20th, 1977"]').click()
+    browser.element('.react-datepicker__year-select').click()
+    browser.element('.react-datepicker__year-select').element('[value="1977"]').click()
+    browser.element('.react-datepicker__month-select').element('[value="7"]').click()
+    browser.element('.react-datepicker__day--020').click()
     browser.element('[for="gender-radio-1"]').click()
     browser.element('#subjectsInput').type('chem').press_enter()
     browser.element('#uploadPicture').send_keys(os.path.abspath('photo.jpg'))
@@ -28,4 +27,3 @@ def test_form():
     browser.element('.table').all('td').even.should(have.exact_texts
         ('Walther White','heisenberg@drugs.com','Male','8999999999','20 August,1977','Chemistry','Reading','photo.jpg','Albukerke, 39','Rajasthan Jaipur')
     )
-
